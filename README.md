@@ -13,6 +13,12 @@ A simple **quiz application** designed for massage therapy students and educator
 
 ---
 
+## CSV Format and Examples
+
+-  **You can also try the full 10-question worksheet:
+examples/questions_salvo_ch3.csv**
+
+
 ##  Getting Started
 
 ### Prerequisites
