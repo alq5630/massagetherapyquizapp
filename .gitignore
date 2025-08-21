@@ -1,0 +1,17 @@
+# Java
+*.class
+*.log
+*.ctxt
+hs_err_pid*
+replay_pid*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+out/
+bin/
