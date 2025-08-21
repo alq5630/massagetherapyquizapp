@@ -243,7 +243,8 @@ public class QuizApp {
         System.out.println("Massage Therapy Quiz");
         System.out.println("--------------------");
 
-        Path csv = Paths.get("questions.csv");
+// Use first command-line arg if provided, else default to questions.csv
+Path csv = Paths.get(args.length > 0 ? args[0] : "questions.csv");
         if (!Files.exists(csv)) {
             System.err.println("Could not find questions.csv in current directory.");
             System.err.println("Create a CSV using the format described in the source comments.");
