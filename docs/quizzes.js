@@ -1,10 +1,9 @@
 // quizzes.js
-// Define your quizzes here. Each quiz has a unique "id", a "title", and an array of questions.
 // Question format:
 // { type: 'MC'|'TF'|'SHORT', prompt: '...', options?: ['A. ...','B. ...',...], answer: 'B'|'TRUE'|'list|of|accepted', explanation?: '...' }
 
 window.QUIZ_CATALOG = [
-  // --- Chapter 3 FIRST ---
+  // Chapter 3 FIRST so it's default
   {
     id: "chapter-3-tools-of-the-trade",
     title: "Chapter 3: Tools of the Trade",
@@ -28,16 +27,16 @@ window.QUIZ_CATALOG = [
         options: ["A. Flat pillow", "B. Face rest cradle", "C. Rolled towel", "D. None of the above"],
         answer: "B", explanation: "A face rest cradle reduces strain and keeps the neck aligned." },
       { type: "TF", prompt: "Vinyl table fabric should be cleaned with strong solvents daily.",
-        options: [], answer: "FALSE", explanation: "Use mild spray/soap; strong solvents can damage the fabric." },
+        answer: "FALSE", explanation: "Use mild spray/soap; strong solvents can damage the fabric." },
       { type: "TF", prompt: "Portable tables are designed for frequent setup and breakdown.",
-        options: [], answer: "TRUE", explanation: "They’re built to be folded and transported often." },
+        answer: "TRUE", explanation: "They’re built to be folded and transported often." },
       { type: "TF", prompt: "A lift-assist or electric table can reduce therapist strain during treatments.",
-        options: [], answer: "TRUE", explanation: "Power or lift-assist tables help adjust height without manual strain." },
+        answer: "TRUE", explanation: "Power or lift-assist tables help adjust height without manual strain." },
       { type: "SHORT", prompt: "List three key features you should consider when selecting a massage table.",
-        options: [], answer: "width|height adjustability|padding|length|frame type|fabric quality",
+        answer: "width|height adjustability|padding|length|frame type|fabric quality",
         explanation: "Students should recall at least three: width, height adjustability, padding, length, frame type, fabric quality." },
       { type: "SHORT", prompt: "Describe two ways to care for table fabric to prevent damage.",
-        options: [], answer: "always cover with linens|clean with mild spray|avoid extreme temps|avoid sharp objects",
+        answer: "always cover with linens|clean with mild spray|avoid extreme temps|avoid sharp objects",
         explanation: "Linens protect fabric; mild cleaning prevents cracking; avoid extreme heat/cold; avoid punctures." },
       { type: "MC", prompt: "Which lubricant is generally best for gliding strokes while still giving control?",
         options: ["A. Heavy oil", "B. Water", "C. Lotion/cream", "D. Talc powder"],
@@ -46,7 +45,7 @@ window.QUIZ_CATALOG = [
         options: ["A. Dipping into a common jar", "B. Using pumps or squeeze bottles", "C. Reusing leftover product", "D. Storing in open containers"],
         answer: "B", explanation: "Pumps/squeeze bottles reduce contamination risk." },
       { type: "TF", prompt: "Essential oils should be applied undiluted directly to the client’s skin.",
-        options: [], answer: "FALSE", explanation: "They should be properly diluted before application." },
+        answer: "FALSE", explanation: "They should be properly diluted before application." },
       { type: "MC", prompt: "What’s a common benefit of using bolsters?",
         options: ["A. Increases table height", "B. Enhances client comfort and alignment", "C. Replaces face cradle", "D. Disinfects the table"],
         answer: "B", explanation: "Bolsters improve comfort and alignment (e.g., under ankles/knees)." },
@@ -54,20 +53,20 @@ window.QUIZ_CATALOG = [
         options: ["A. Table cart or carry case", "B. Heating pad for clients", "C. Weighted blanket", "D. Decorative candles"],
         answer: "A", explanation: "Carts/carry cases help transport and organize equipment." },
       { type: "TF", prompt: "Professional appearance does not affect client trust.",
-        options: [], answer: "FALSE", explanation: "Appearance and hygiene help build trust and credibility." },
+        answer: "FALSE", explanation: "Appearance and hygiene help build trust and credibility." },
       { type: "SHORT", prompt: "Explain why pumps or squeezable bottles are better for dispensing lubricants than dipping from a jar.",
-        options: [], answer: "prevents contamination|keeps product sanitary|reduces waste",
+        answer: "prevents contamination|keeps product sanitary|reduces waste",
         explanation: "Prevents cross-contamination, keeps lubricant sanitary, and reduces waste." },
       { type: "SHORT", prompt: "Give two examples of accessories that improve client comfort and two that help therapist convenience.",
-        options: [], answer: "face rest|bolsters|stool|table cart|carry case",
+        answer: "face rest|bolsters|stool|table cart|carry case",
         explanation: "Face rest and bolsters improve comfort; stool and carts help therapist convenience." },
       { type: "SHORT", prompt: "Why is professional appearance important for massage therapists?",
-        options: [], answer: "builds client trust|ensures hygiene|shows professionalism",
+        answer: "builds client trust|ensures hygiene|shows professionalism",
         explanation: "Professional appearance builds trust, ensures hygiene, and maintains credibility." }
     ]
   },
 
-  // --- Other sample quizzes (keep or replace with your own) ---
+  // You can keep or remove these samples
   {
     id: "ethics-01",
     title: "Ethics: Professional Boundaries (Set 1)",
@@ -81,25 +80,12 @@ window.QUIZ_CATALOG = [
         answer: "risks|benefits|alternatives|scope|privacy|confidentiality",
         explanation: "Key elements include risks, benefits, alternatives, scope, and privacy/confidentiality." }
     ]
-  },
-  {
-    id: "a-and-p-01",
-    title: "Anatomy & Physiology: Nerves (Set 1)",
-    questions: [
-      { type: "MC", prompt: "Which nerve innervates the diaphragm?",
-        options: ["A. Vagus", "B. Phrenic", "C. Ulnar", "D. Median"],
-        answer: "B", explanation: "C3–C5 keeps the diaphragm alive." },
-      { type: "TF", prompt: "The radial nerve primarily supplies flexor muscles of the forearm.",
-        answer: "FALSE", explanation: "Radial nerve mainly supplies extensors." },
-      { type: "SHORT", prompt: "Name one primary hormone of the sympathetic response.",
-        answer: "epinephrine|adrenaline|norepinephrine", explanation: "Any of these is acceptable." }
-    ]
   }
 ];
 
 // Email config (Formspree or your endpoint)
 window.EMAIL_CONFIG = {
   ENABLE_EMAIL: true,
-  ENDPOINT: "https://formspree.io/f/xgvlervy", // <-- replace
+  ENDPOINT: "https://formspree.io/f/xgvlervy",
   TO_ADDRESS: "ayeshaqahash@gmail.com",
 };
