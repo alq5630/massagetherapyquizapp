@@ -34,6 +34,19 @@ startBtn.addEventListener("click", async () => {
   }
 });
 
+function showError(msg) {
+  const box = document.querySelector("#error");
+  if (!box) return alert(msg);
+  box.textContent = msg;
+  box.classList.remove("hidden");
+}
+function clearError() {
+  const box = document.querySelector("#error");
+  if (!box) return;
+  box.textContent = "";
+  box.classList.add("hidden");
+}
+
 
 $("#restartBtn")?.addEventListener("click", () => {
   resultsEl.classList.add("hidden");
