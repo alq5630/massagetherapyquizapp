@@ -100,6 +100,6 @@ window.QUIZ_CATALOG = [
 // Email config (Formspree or your endpoint)
 window.EMAIL_CONFIG = {
   ENABLE_EMAIL: true,
-  ENDPOINT: "https://formspree.io/f/your_form_id_here", // <-- replace
-  TO_ADDRESS: "your_email@example.com",
+  ENDPOINT: "https://formspree.io/f/xgvlervy", // <-- replace
+  TO_ADDRESS: "ayeshaqahash@gmail.com",
 };
