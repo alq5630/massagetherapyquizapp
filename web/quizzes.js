@@ -60,6 +60,6 @@ window.QUIZ_CATALOG = [
 // For Formspree, create a form and paste the endpoint URL here.
 window.EMAIL_CONFIG = {
   ENABLE_EMAIL: true,
-  ENDPOINT: "https://formspree.io/f/your_form_id_here", // <-- replace with your Formspree endpoint OR your own API endpoint
-  TO_ADDRESS: "your_email@example.com", // used by some providers; Formspree reads from template
+  ENDPOINT: "https://formspree.io/f/xgvlervy", 
+  TO_ADDRESS: "ayeshaqahash@gmail.com", 
 };
