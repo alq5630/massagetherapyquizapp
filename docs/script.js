@@ -127,11 +127,23 @@ function renderQuestion() {
       div.innerHTML = `<input type="radio" name="opt" id="${id}" value="${val}"> ${val}`;
       els.qOptions.appendChild(div);
     });
-  } else if (q.type === 'SHORT') {
-    els.qShort.classList.remove('hidden');
-    els.shortInput.value = '';
-    els.shortInput.focus();
-  }
+ } else {
+  // SHORT answer: accept if student's answer contains required number of keywords.
+  const acceptable = correct
+    .split('|')
+    .map(s => s.trim().toLowerCase())
+    .filter(Boolean);
+
+  const normalized = userAns.toLowerCase();
+
+  // Heuristic: require 3 keywords if prompt says "three", 2 if "two", else 1.
+  const need = (/\bthree\b|\b3\b/i.test(q.prompt) ? 3
+             : (/\btwo\b|\b2\b/i.test(q.prompt) ? 2 : 1));
+
+  const matches = acceptable.filter(tok => tok && normalized.includes(tok)).length;
+  isCorrect = matches >= need;
+}
+
 }
 
 function checkAnswer() {
