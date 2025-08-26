@@ -31,6 +31,43 @@ main { max-width: 1000px; margin: 0 auto; padding: 16px; }
 .hidden { display: none !important; }
 .small { color: var(--muted); margin-top: 8px; }
 
+/* HERO BANNER */
+.hero {
+  /* If docs/assets/ch3-banner.jpg exists, it will show behind the gradient */
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url('assets/ch3-banner.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  margin: 0 auto 16px;
+  max-width: 1000px;
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+}
+.hero-content {
+  text-align: center;
+  color: white;
+  padding: 28px 18px;
+}
+.hero h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+.hero p { margin: 0 0 14px; opacity: 0.95; }
+.btn, button {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: var(--secondary);
+  color: var(--text);
+  font-weight: 600;
+}
+.cta { background: var(--primary); color: var(--primary-contrast); }
+
 .picker-row {
   display: grid;
   grid-template-columns: 160px 1fr;
@@ -42,21 +79,10 @@ input, select, textarea {
   width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d1d5db;
 }
 
-.btn, button {
-  display: inline-block;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  background: var(--secondary);
-  color: var(--text);
-  font-weight: 600;
-}
 button.primary { background: var(--primary); color: var(--primary-contrast); }
 button.secondary { background: var(--secondary); color: var(--text); }
 .actions { display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
 .inline { color: var(--muted); }
-
 .file-name { color: var(--muted); font-size: 14px; margin-left: 8px; }
 .or { color: var(--muted); text-align: center; }
 
