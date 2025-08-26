@@ -70,46 +70,76 @@ function parseCsv(file) {
 // Normalize rows -> internal model
 function normalizeQuestions(rows) {
   return rows.map((r, idx) => {
+    const rowNo = idx + 1;
     const type = (r.type || "").trim().toUpperCase();
     const prompt = (r.prompt || "").trim();
     const expl = (r.explanation || "").trim();
+
+    if (!type) throw new Error(`Row ${rowNo}: Missing "type"`);
+    if (!prompt) throw new Error(`Row ${rowNo}: Missing "prompt"`);
+
+    // Normalize common weirdness
+    const rawOptions = (r.options ?? "").toString().trim();
+    let answer = (r.answer ?? "").toString().trim();
+
     let options = [];
-    let answer = (r.answer || "").trim();
+    let normalizedAnswer = null;
 
     if (type === "MC") {
-      options = (r.options || "")
+      // MC: options must exist; answer can be letter (A/B/...) or full text
+      options = rawOptions
         .split("|")
         .map(s => s.trim())
         .filter(Boolean);
-      // Allow letter keys (A/B/C/...) OR full text
+      if (!options.length) throw new Error(`Row ${rowNo}: MC requires "options" separated by |`);
+      if (!answer) throw new Error(`Row ${rowNo}: MC requires an "answer" (letter OR full text)`);
+
       if (/^[A-Z]$/.test(answer)) {
         const i = answer.charCodeAt(0) - 65;
-        answer = options[i] ?? "";
+        normalizedAnswer = options[i];
+        if (!normalizedAnswer) {
+          throw new Error(`Row ${rowNo}: MC answer letter "${answer}" doesn’t match any option`);
+        }
+      } else {
+        // Match by text exactly to one of the options
+        const hit = options.find(o => o === answer);
+        if (!hit) {
+          throw new Error(`Row ${rowNo}: MC answer must match one of the options (or be a letter A/B/...)`);
+        }
+        normalizedAnswer = hit;
       }
     } else if (type === "TF") {
+      // TF: options are fixed; answer TRUE/FALSE (case-insensitive)
       options = ["TRUE", "FALSE"];
-      answer = answer.toUpperCase();
-      if (answer !== "TRUE" && answer !== "FALSE") {
-        throw new Error(`Row ${idx + 1}: TF answer must be TRUE or FALSE`);
+      const a = answer.toUpperCase();
+      if (a !== "TRUE" && a !== "FALSE") {
+        throw new Error(`Row ${rowNo}: TF answer must be TRUE or FALSE`);
       }
+      normalizedAnswer = a;
     } else if (type === "SHORT") {
-      options = [];
-      answer = (answer || "")
+      // SHORT: Accept answers from either 'answer' OR (for legacy CSVs) from 'options'
+      // Prefer 'answer' column; if empty, fall back to 'options'
+      const rawList = (answer || rawOptions);
+      if (!rawList) {
+        throw new Error(`Row ${rowNo}: SHORT requires acceptable answers in "answer" (preferred) or in "options"`);
+      }
+      const accept = rawList
         .split("|")
         .map(s => s.trim().toLowerCase())
         .filter(Boolean);
+      if (!accept.length) {
+        throw new Error(`Row ${rowNo}: SHORT acceptable answers list is empty`);
+      }
+      normalizedAnswer = accept; // keep array for grading
+      options = []; // no visible options for SHORT
     } else {
-      throw new Error(`Row ${idx + 1}: Unsupported type "${type}"`);
+      throw new Error(`Row ${rowNo}: Unsupported type "${type}" (use MC, TF, or SHORT)`);
     }
 
-    if (!prompt) throw new Error(`Row ${idx + 1}: Missing prompt`);
-    if (type !== "SHORT" && (!options.length || !answer)) {
-      throw new Error(`Row ${idx + 1}: Missing options/answer`);
-    }
-
-    return { type, prompt, options, answer, explanation: expl };
+    return { type, prompt, options, answer: normalizedAnswer, explanation: expl };
   });
 }
+
 
 function renderQuestion() {
   const q = questions[current];
