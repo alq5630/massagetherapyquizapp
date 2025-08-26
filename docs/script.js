@@ -59,19 +59,32 @@ let state = {
 // ========== INIT QUIZ PICKER ==========
 function loadQuizPicker() {
   const catalog = (window.QUIZ_CATALOG || []);
-  els.quizSelect.innerHTML = "";
+
+  // 1) Show a clear error if the catalog didn't load
+  if (!Array.isArray(catalog) || catalog.length === 0) {
+    els.quizSelect.innerHTML = '<option value="" disabled selected>No quizzes found</option>';
+    els.pickerError.textContent = "Quiz list failed to load. Check that docs/quizzes.js exists and is referenced as ./quizzes.js.";
+    return;
+  }
+
+  // 2) Always render a placeholder option first
+  els.quizSelect.innerHTML = '<option value="" disabled>Choose…</option>';
+
   catalog.forEach(q => {
     const opt = document.createElement('option');
     opt.value = q.id;
     opt.textContent = q.title;
     els.quizSelect.appendChild(opt);
   });
-  // Default to Chapter 3 if present
+
+  // Default select Chapter 3 if present, else leave placeholder selected
   if (catalog.some(q => q.id === "chapter-3-tools-of-the-trade")) {
     els.quizSelect.value = "chapter-3-tools-of-the-trade";
+  } else {
+    els.quizSelect.selectedIndex = 0;
   }
 }
-loadQuizPicker();
+
 
 // ========== QUIZ FLOW ==========
 function startQuiz() {
