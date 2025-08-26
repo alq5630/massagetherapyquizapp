@@ -66,7 +66,6 @@ function loadQuizPicker() {
     opt.textContent = q.title;
     els.quizSelect.appendChild(opt);
   });
-
   // Default to Chapter 3 if present
   if (catalog.some(q => q.id === "chapter-3-tools-of-the-trade")) {
     els.quizSelect.value = "chapter-3-tools-of-the-trade";
@@ -218,4 +217,68 @@ function showResults() {
 }
 
 function exportResults() {
-  const
+  const header = ['#','type','prompt','your_answer','correct_answer','result','explanation'];
+  const lines = [header.join(',')];
+  state.responses.forEach(r => {
+    lines.push([r.idx, r.type, csvEscape(r.prompt), csvEscape(r.user), csvEscape(r.correct), r.result, csvEscape(r.explanation)].join(','));
+  });
+  const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${state.quizId}_${state.studentName.replace(/\s+/g,'_')}_results.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ========== EMAIL RESULTS ==========
+async function emailResults() {
+  const cfg = window.EMAIL_CONFIG || {};
+  if (!cfg.ENABLE_EMAIL || !cfg.ENDPOINT) {
+    els.emailStatus.textContent = "Email is not configured. Ask your instructor.";
+    return;
+  }
+  els.emailStatus.textContent = "Sending email...";
+  const summary = {
+    quizId: state.quizId,
+    quizTitle: state.quizTitle,
+    studentName: state.studentName,
+    studentEmail: state.studentEmail,
+    total: state.questions.length,
+    correct: state.correct,
+    percent: Math.round((state.correct / state.questions.length) * 100),
+    timestamp: new Date().toISOString(),
+    responses: state.responses
+  };
+  try {
+    const resp = await fetch(cfg.ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(summary)
+    });
+    els.emailStatus.textContent = resp.ok
+      ? "Sent! Your instructor has received your results."
+      : "Email service returned an error. Try again or contact your instructor.";
+  } catch {
+    els.emailStatus.textContent = "Failed to send results (network error).";
+  }
+}
+
+// ========== EVENTS ==========
+els.startBtn.addEventListener('click', startQuiz);
+els.submitBtn.addEventListener('click', () => {
+  const res = checkAnswer();
+  if (!res.ok) {
+    els.feedback.textContent = res.message;
+    els.feedback.className = 'feedback err';
+  }
+});
+els.nextBtn.addEventListener('click', nextQuestion);
+els.restartBtn.addEventListener('click', () => {
+  els.results.classList.add('hidden');
+  els.picker.classList.remove('hidden');
+});
+els.exportBtn.addEventListener('click', exportResults);
+els.emailBtn.addEventListener('click', emailResults);
