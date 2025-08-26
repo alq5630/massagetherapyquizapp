@@ -7,99 +7,92 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Massage Therapy Quiz</h1>
-    <p class="subtitle">Choose a quiz and get instant feedback. Results can be sent to your instructor.</p>
-  </header>
+  <div class="wrapper">
+    <header class="app-header">
+      <div>
+        <h1 class="app-title">Massage Therapy Quiz</h1>
+        <p class="app-sub">Chapter 3 • Tools of the Trade</p>
+      </div>
+      <div class="status" id="status"></div>
+    </header>
 
-  <main id="app">
-    <!-- QUIZ PICKER -->
-    <section id="picker">
-      <div class="card">
-        <h2>Pick a Quiz</h2>
-        <p class="small">Select a quiz from the list. </p>
-
-        <div class="picker-row">
-          <label for="quizSelect">Quiz:</label>
-          <select id="quizSelect"></select>
+    <!-- P I C K E R -->
+    <section id="picker" class="panel">
+      <div class="row three" style="margin-bottom:10px">
+        <div>
+          <label for="quizSelect">Quiz</label>
+          <select id="quizSelect" aria-label="Quiz selector"></select>
         </div>
-
-        <div class="picker-row">
-          <label for="studentName">Your Name (required):</label>
-          <input id="studentName" type="text" placeholder="First Last" />
+        <div>
+          <label for="studentName">Name</label>
+          <input id="studentName" type="text" placeholder="Your name">
         </div>
-
-        <div class="picker-row">
-          <label for="studentEmail">Your Email (optional):</label>
-          <input id="studentEmail" type="email" placeholder="you@example.com" />
+        <div>
+          <label for="studentEmail">Email (optional)</label>
+          <input id="studentEmail" type="email" placeholder="you@example.com">
         </div>
+      </div>
 
-        <div class="actions">
-          <button id="startBtn" class="primary">Start Quiz</button>
-          <label class="inline">
-            <input type="checkbox" id="shuffleBox" checked />
-            Shuffle questions
+      <div class="row two" style="align-items:center">
+        <div>
+          <label style="display:flex; gap:8px; align-items:center;">
+            <input id="shuffleBox" type="checkbox"> Shuffle questions
           </label>
         </div>
-        <p id="pickerError" class="error"></p>
+        <div class="center" style="justify-content:flex-end;">
+          <button id="startBtn" class="btn btn-primary">Start</button>
+        </div>
+      </div>
+
+      <div id="pickerError" style="margin-top:8px"></div>
+    </section>
+
+    <!-- Q U I Z -->
+    <section id="quiz" class="panel hidden">
+      <div class="q-meta">
+        <div id="qCounter">Question 1 of N</div>
+        <div id="scoreBox">Score: 0/0</div>
+      </div>
+      <div class="progress-wrap"><div id="progressBar" class="progress-bar"></div></div>
+      <div class="q-prompt" id="qPrompt"></div>
+      <div id="qOptions" class="options"></div>
+      <div id="qShort" class="hidden"><input id="shortInput" type="text" placeholder="Type your answer…"></div>
+      <div id="feedback" class="feedback"></div>
+      <div class="row two" style="margin-top:10px">
+        <button id="submitBtn" class="btn btn-primary">Submit</button>
+        <button id="nextBtn" class="btn btn-secondary hidden">Next</button>
       </div>
     </section>
 
-    <!-- QUIZ -->
-    <section id="quiz" class="hidden">
-      <div class="card">
-        <div class="quiz-header">
-          <div id="qCounter"></div>
-          <div id="scoreBox"></div>
-        </div>
-        <h2 id="qPrompt"></h2>
-        <div id="qOptions" class="options"></div>
-        <div id="qShort" class="short hidden">
-          <input id="shortInput" type="text" placeholder="Type your answer..." />
-        </div>
-        <div id="feedback" class="feedback"></div>
-        <div class="actions">
-          <button id="submitBtn" class="primary">Submit</button>
-          <button id="nextBtn" class="secondary hidden">Next</button>
+    <!-- R E S U L T S -->
+    <section id="results" class="panel hidden">
+      <h2 style="margin-top:0">Results</h2>
+      <p id="finalScore"></p>
+      <div class="row two" style="margin:10px 0 14px">
+        <button id="restartBtn" class="btn btn-ghost">Restart</button>
+        <div class="center" style="gap:10px; justify-content:flex-end">
+          <button id="exportBtn" class="btn btn-secondary">Export Results CSV</button>
+          <button id="emailBtn" class="btn btn-primary">Email My Instructor</button>
         </div>
       </div>
-    </section>
+      <div id="emailStatus" class="status"></div>
 
-    <!-- RESULTS -->
-    <section id="results" class="hidden">
-      <div class="card">
-        <h2>Results</h2>
-        <p id="finalScore"></p>
-
-        <div class="table-wrap">
-          <table id="reviewTable">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Type</th>
-                <th>Prompt</th>
-                <th>Your Answer</th>
-                <th>Correct Answer</th>
-                <th>Result</th>
-                <th>Explanation</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-
-        <div class="actions">
-          <button id="restartBtn" class="secondary">Choose Another Quiz</button>
-          <button id="exportBtn" class="secondary">Export Results CSV</button>
-          <button id="emailBtn" class="primary">Email My Instructor</button>
-        </div>
-        <p id="emailStatus" class="small"></p>
+      <div style="overflow:auto;">
+        <table id="reviewTable" aria-label="Answer review table">
+          <thead>
+            <tr>
+              <th>#</th><th>Type</th><th>Prompt</th><th>Your Answer</th><th>Correct</th><th>Result</th><th>Explanation</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </section>
-  </main>
+  </div>
 
-<script src="./quizzes.js"></script>
-<script src="./script.js"></script>
-
+  <!-- keep scripts at end in this order -->
+  <script src="./quizzes.js"></script>
+  <script src="./script.js"></script>
 </body>
+
 </html>
