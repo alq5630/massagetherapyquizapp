@@ -34,3 +34,16 @@ cp examples/questions.csv .
 
 # run
 java -cp src QuizApp
+
+## Web Version (no install)
+Use the browser app hosted on GitHub Pages:
+
+1. Go to **https://alq5630.github.io/massagetherapyquizapp/**
+2. Click **Choose questions.csv** and upload any CSV with headers: `type,prompt,options,answer,explanation`.
+3. Click **Start Quiz** to begin.
+
+CSV quick reference:
+- MC: options split by `|`, answer can be the letter (A/B/C/...) or full text
+- TF: answer must be `TRUE` or `FALSE`
+- SHORT: put one or more acceptable answers separated by `|`
+
