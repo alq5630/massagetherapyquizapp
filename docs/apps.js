@@ -16,15 +16,24 @@ fileInput.addEventListener("change", () => {
 });
 
 startBtn.addEventListener("click", async () => {
+  clearError();
   const file = fileInput.files[0];
   if (!file) return;
-  const parsed = await parseCsv(file);
-  questions = normalizeQuestions(parsed.data);
-  current = 0; answers = [];
-  $("#uploader").classList.add("hidden");
-  quizEl.classList.remove("hidden");
-  renderQuestion();
+  try {
+    const parsed = await parseCsv(file);
+    questions = normalizeQuestions(parsed.data);
+    if (!questions.length) {
+      throw new Error("No questions found. Make sure your CSV has a header row: type,prompt,options,answer,explanation");
+    }
+    current = 0; answers = [];
+    $("#uploader").classList.add("hidden");
+    quizEl.classList.remove("hidden");
+    renderQuestion();
+  } catch (err) {
+    showError(err?.message || String(err));
+  }
 });
+
 
 $("#restartBtn")?.addEventListener("click", () => {
   resultsEl.classList.add("hidden");
