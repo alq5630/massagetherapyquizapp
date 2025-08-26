@@ -55,6 +55,26 @@ $("#restartBtn")?.addEventListener("click", () => {
   startBtn.disabled = true;
 });
 
+document.querySelector("#useSampleBtn")?.addEventListener("click", async () => {
+  clearError();
+  try {
+    const resp = await fetch("sample.csv", { cache: "no-store" });
+    if (!resp.ok) throw new Error("Could not fetch sample.csv");
+    const text = await resp.text();
+    // Papa can parse string input too:
+    const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
+    questions = normalizeQuestions(parsed.data);
+    if (!questions.length) throw new Error("No questions found in sample.csv");
+    current = 0; answers = [];
+    document.querySelector("#uploader").classList.add("hidden");
+    document.querySelector("#quiz").classList.remove("hidden");
+    renderQuestion();
+  } catch (err) {
+    showError(err?.message || String(err));
+  }
+});
+
+
 // CSV parsing using PapaParse (header row, ignore empties)
 function parseCsv(file) {
   return new Promise((resolve, reject) => {
