@@ -1,29 +1,35 @@
-Massage Therapy Quiz App
+Perfect 🌟 Let’s make your README look **clean, professional, and student-friendly** — with nice headings, emojis for clarity, and direct links for students. I’ll use your repo name (`massagetherapyquizapp`) and your GitHub username (`alq5630`) so the Pages link is correct.
 
-An open-source quiz application designed for Massage Therapy students and educators.
-Supports multiple-choice (MC), true/false (TF), and short answer (SHORT) questions.
+Here’s the polished version ⬇️
 
-🚀 Features
+---
 
-Two ways to run:
+# 💆‍♀️ Massage Therapy Quiz App
 
-Java Console App (original version) — load questions from CSV files.
+An interactive quiz platform built for **Massage Therapy students and educators**.
+Supports **Multiple Choice (MC)**, **True/False (TF)**, and **Short Answer (SHORT)** questions.
 
-Browser-Based UI (new) — students simply pick a quiz, no uploads required.
+---
 
-Quiz Picker — students choose from a list of quizzes.
+## ✨ Features
 
-Instant Feedback — correct/incorrect answers shown with explanations.
+* 🖥️ **Two modes of use**:
 
-Results Summary — see all answers and scores at the end.
+  1. **Java Console App** — classic CSV-based quizzes.
+  2. **Browser-Based UI** — modern web app where students just pick a quiz (no CSV uploads).
+* 🎯 **Quiz Picker** — choose from pre-loaded quizzes.
+* ✅ **Instant Feedback** — shows correct/incorrect with explanations.
+* 📊 **Results Summary** — review answers after finishing.
+* 📂 **Export Results** — download as CSV.
+* 📧 **Email Submission** — send scores directly to the instructor.
 
-Export to CSV — students can save their results.
+---
 
-Email Results — optional email submission to the instructor.
+## 📂 Repository Structure
 
-📂 Repository Structure
-.
-├── src/               # Java console app (CSV-based)
+```
+massagetherapyquizapp/
+├── src/               # Java console app (CSV-driven)
 │   └── ...            # Java source files
 ├── docs/              # Browser UI (served by GitHub Pages)
 │   ├── index.html
@@ -31,106 +37,130 @@ Email Results — optional email submission to the instructor.
 │   ├── quizzes.js     # Define quizzes here
 │   └── script.js
 └── README.md
+```
 
-🖥️ Java Console App
+---
 
-The original version loads quizzes from CSV files.
+## 🌐 Take the Quiz Online
 
-Compile & Run
-javac src/QuizApp.java
-cp examples/questions.csv .
-java -cp src QuizApp
+👉 **Students click here to start:**
+🔗 [Massage Therapy Quiz App](https://alq5630.github.io/massagetherapyquizapp/)
 
-CSV Format
-type,prompt,options,answer,explanation
-MC,Which nerve innervates the diaphragm?,"A. Vagus|B. Phrenic|C. Ulnar|D. Median",B,"C3–C5 keeps the diaphragm alive."
-TF,Massage increases local circulation.,,TRUE,"Vasodilation contributes to increased blood flow."
-SHORT,Name one hormone of the sympathetic response.,,epinephrine|adrenaline|norepinephrine,"Any of these is acceptable."
+### Student Instructions
 
-🌐 Browser-Based UI (Recommended for Students)
+1. Enter your **name** (and email if required).
+2. Select a quiz from the dropdown.
+3. Answer the questions.
+4. At the end, you can:
 
-Hosted directly on GitHub Pages.
-👉 Click here to take a quiz
+   * View your score
+   * Export results to CSV
+   * Email your instructor (if enabled)
 
-Student Instructions
+---
 
-Open the quiz link above.
+## 👩‍🏫 Instructor Guide
 
-Enter your name (and email if required).
+### Editing Quizzes
 
-Pick the quiz you want to take.
+* All quizzes are stored in [`docs/quizzes.js`](docs/quizzes.js).
+* Add or edit quizzes inside the `window.QUIZ_CATALOG` array:
 
-Answer the questions and submit.
-
-At the end, you can:
-
-View your score
-
-Export results as CSV
-
-Email your instructor (if enabled)
-
-Instructor Instructions
-
-All quizzes live in docs/quizzes.js
-.
-
-To add/edit quizzes, update the window.QUIZ_CATALOG array:
-
+```js
 {
   id: "ethics-01",
   title: "Ethics: Professional Boundaries (Set 1)",
   questions: [
-    { type: "TF", prompt: "Dual relationships are always ethical.", answer: "FALSE" },
-    { type: "MC", prompt: "Which action maintains client autonomy?",
+    {
+      type: "TF",
+      prompt: "A dual relationship is always ethical.",
+      answer: "FALSE"
+    },
+    {
+      type: "MC",
+      prompt: "Which action best maintains client autonomy?",
       options: ["A. Making decisions", "B. Providing choices", "C. Withholding info"],
-      answer: "B" }
+      answer: "B"
+    },
+    {
+      type: "SHORT",
+      prompt: "Name one element of informed consent.",
+      answer: "risks|benefits|alternatives|scope|privacy"
+    }
   ]
 }
+```
 
+* **MC** → use `options` and specify the correct letter in `answer`.
+* **TF** → `answer` must be `"TRUE"` or `"FALSE"`.
+* **SHORT** → list acceptable answers separated by `|` (case-insensitive).
 
-MC: supply options and answer letter.
+---
 
-TF: answer is TRUE or FALSE.
+## 📧 Instructor Email Setup
 
-SHORT: answer is a |-separated list of acceptable responses.
+This feature uses [**Formspree**](https://formspree.io/) (free, no server needed).
 
-📧 Emailing Scores
+1. Create a Formspree project → copy the **endpoint URL** (e.g., `https://formspree.io/f/xxxxxx`).
+2. In [`docs/quizzes.js`](docs/quizzes.js), update:
 
-This feature uses a simple form backend (e.g., Formspree
-).
-
-Setup (Formspree)
-
-Create a new Form → copy your endpoint URL (looks like https://formspree.io/f/xxxxxx).
-
-In docs/quizzes.js
-, update:
-
+```js
 window.EMAIL_CONFIG = {
   ENABLE_EMAIL: true,
   ENDPOINT: "https://formspree.io/f/your_form_id_here",
   TO_ADDRESS: "your_email@example.com"
 };
+```
 
+3. Students will see an **“Email My Instructor”** button on the results screen.
 
-Students can then click “Email My Instructor” at the results screen.
+---
 
-📦 Deployment
+## 🖥️ Java Console Version (Optional)
 
-This repo is configured for GitHub Pages.
+Still included for command-line users.
 
-All browser quiz files live in /docs.
+### Compile & Run
 
-Pages settings → Source: main branch, /docs folder.
+```bash
+javac src/QuizApp.java
+cp examples/questions.csv .
+java -cp src QuizApp
+```
 
-Live site: https://<your-username>.github.io/massagetherapyquizapp/
+### CSV Format
 
-📝 License
+```
+type,prompt,options,answer,explanation
+MC,Which nerve innervates the diaphragm?,"A. Vagus|B. Phrenic|C. Ulnar|D. Median",B,"C3–C5 keeps the diaphragm alive."
+TF,Massage increases local circulation.,,TRUE,"Vasodilation contributes to increased blood flow."
+SHORT,Name one hormone of the sympathetic response.,,epinephrine|adrenaline|norepinephrine,"Any of these is acceptable."
+```
 
-MIT License. Free to use, modify, and share.
+---
 
-🙋 About
+## 🚀 Deployment
 
-Created for Massage Therapy education.
-Use it to practice ethics, anatomy & physiology, clinical practice, or any subject by editing quizzes.
+This repo is already set up for **GitHub Pages**:
+
+* All browser quiz files live in `/docs`.
+* Pages Settings → Source: `main` branch, `/docs` folder.
+* Live site: `https://alq5630.github.io/massagetherapyquizapp/`
+
+---
+
+## 📜 License
+
+MIT License — free to use, modify, and share.
+
+---
+
+## 🙋 About
+
+Created to support **Massage Therapy education** — practice ethics, anatomy, physiology, and more by customizing quizzes.
+
+---
+
+✨ That gives you a README that looks **student-ready** while keeping all the technical details for you.
+
+Do you want me to also make you a **badges section** (build status, license, GitHub Pages link) at the top for a polished look?
