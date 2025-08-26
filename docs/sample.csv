@@ -1,0 +1,4 @@
+type,prompt,options,answer,explanation
+MC,Which nerve innervates the diaphragm?,"A. Vagus|B. Phrenic|C. Ulnar|D. Median",B,"C3–C5 keeps the diaphragm alive"
+TF,The atlas is C1.,,TRUE,"Atlas is the first cervical vertebra"
+SHORT,Name one rotator cuff muscle.,supraspinatus|infraspinatus|teres minor|subscapularis,"Any one is acceptable"
