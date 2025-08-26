@@ -1,49 +1,136 @@
-# Massage Therapy Quiz App (Java, Console)
+Massage Therapy Quiz App
 
-A simple **quiz application** designed for massage therapy students and educators. The app loads questions from a CSV file and supports multiple question types with instant feedback and end-of-quiz review. Perfect for studying anatomy, ethics, or clinical practice.
+An open-source quiz application designed for Massage Therapy students and educators.
+Supports multiple-choice (MC), true/false (TF), and short answer (SHORT) questions.
 
----
+🚀 Features
 
-##  Features
--  **CSV-driven**: add/edit questions easily in a spreadsheet  
--  **Question types**: Multiple Choice (MC), True/False (TF), Short Answer (SHORT)  
--  **Shuffling**: randomizes questions each run  
--  **Instant feedback**: shows correctness + explanation  
--  **Results summary**: final score and per-question review  
+Two ways to run:
 
----
+Java Console App (original version) — load questions from CSV files.
 
-## CSV Format and Examples
+Browser-Based UI (new) — students simply pick a quiz, no uploads required.
 
--  **You can also try the full 10-question worksheet:
-examples/questions_salvo_ch3.csv**
+Quiz Picker — students choose from a list of quizzes.
 
+Instant Feedback — correct/incorrect answers shown with explanations.
 
-##  Getting Started
+Results Summary — see all answers and scores at the end.
 
-### Prerequisites
-- Java 17+ installed (`java -version`)
+Export to CSV — students can save their results.
 
-### Compile & Run
-```bash
-# compile
+Email Results — optional email submission to the instructor.
+
+📂 Repository Structure
+.
+├── src/               # Java console app (CSV-based)
+│   └── ...            # Java source files
+├── docs/              # Browser UI (served by GitHub Pages)
+│   ├── index.html
+│   ├── styles.css
+│   ├── quizzes.js     # Define quizzes here
+│   └── script.js
+└── README.md
+
+🖥️ Java Console App
+
+The original version loads quizzes from CSV files.
+
+Compile & Run
 javac src/QuizApp.java
-
-# copy the example question bank to the root folder
 cp examples/questions.csv .
-
-# run
 java -cp src QuizApp
 
-## Web Version (no install)
-Use the browser app hosted on GitHub Pages:
+CSV Format
+type,prompt,options,answer,explanation
+MC,Which nerve innervates the diaphragm?,"A. Vagus|B. Phrenic|C. Ulnar|D. Median",B,"C3–C5 keeps the diaphragm alive."
+TF,Massage increases local circulation.,,TRUE,"Vasodilation contributes to increased blood flow."
+SHORT,Name one hormone of the sympathetic response.,,epinephrine|adrenaline|norepinephrine,"Any of these is acceptable."
 
-1. Go to **https://alq5630.github.io/massagetherapyquizapp/**
-2. Click **Choose questions.csv** and upload any CSV with headers: `type,prompt,options,answer,explanation`.
-3. Click **Start Quiz** to begin.
+🌐 Browser-Based UI (Recommended for Students)
 
-CSV quick reference:
-- MC: options split by `|`, answer can be the letter (A/B/C/...) or full text
-- TF: answer must be `TRUE` or `FALSE`
-- SHORT: put one or more acceptable answers separated by `|`
+Hosted directly on GitHub Pages.
+👉 Click here to take a quiz
 
+Student Instructions
+
+Open the quiz link above.
+
+Enter your name (and email if required).
+
+Pick the quiz you want to take.
+
+Answer the questions and submit.
+
+At the end, you can:
+
+View your score
+
+Export results as CSV
+
+Email your instructor (if enabled)
+
+Instructor Instructions
+
+All quizzes live in docs/quizzes.js
+.
+
+To add/edit quizzes, update the window.QUIZ_CATALOG array:
+
+{
+  id: "ethics-01",
+  title: "Ethics: Professional Boundaries (Set 1)",
+  questions: [
+    { type: "TF", prompt: "Dual relationships are always ethical.", answer: "FALSE" },
+    { type: "MC", prompt: "Which action maintains client autonomy?",
+      options: ["A. Making decisions", "B. Providing choices", "C. Withholding info"],
+      answer: "B" }
+  ]
+}
+
+
+MC: supply options and answer letter.
+
+TF: answer is TRUE or FALSE.
+
+SHORT: answer is a |-separated list of acceptable responses.
+
+📧 Emailing Scores
+
+This feature uses a simple form backend (e.g., Formspree
+).
+
+Setup (Formspree)
+
+Create a new Form → copy your endpoint URL (looks like https://formspree.io/f/xxxxxx).
+
+In docs/quizzes.js
+, update:
+
+window.EMAIL_CONFIG = {
+  ENABLE_EMAIL: true,
+  ENDPOINT: "https://formspree.io/f/your_form_id_here",
+  TO_ADDRESS: "your_email@example.com"
+};
+
+
+Students can then click “Email My Instructor” at the results screen.
+
+📦 Deployment
+
+This repo is configured for GitHub Pages.
+
+All browser quiz files live in /docs.
+
+Pages settings → Source: main branch, /docs folder.
+
+Live site: https://<your-username>.github.io/massagetherapyquizapp/
+
+📝 License
+
+MIT License. Free to use, modify, and share.
+
+🙋 About
+
+Created for Massage Therapy education.
+Use it to practice ethics, anatomy & physiology, clinical practice, or any subject by editing quizzes.
