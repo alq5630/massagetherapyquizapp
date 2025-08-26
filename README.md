@@ -1,31 +1,25 @@
-Perfect 🌟 Let’s make your README look **clean, professional, and student-friendly** — with nice headings, emojis for clarity, and direct links for students. I’ll use your repo name (`massagetherapyquizapp`) and your GitHub username (`alq5630`) so the Pages link is correct.
-
-Here’s the polished version ⬇️
-
----
-
-# 💆‍♀️ Massage Therapy Quiz App
+# Massage Therapy Quiz App
 
 An interactive quiz platform built for **Massage Therapy students and educators**.
 Supports **Multiple Choice (MC)**, **True/False (TF)**, and **Short Answer (SHORT)** questions.
 
 ---
 
-## ✨ Features
+## Features
 
-* 🖥️ **Two modes of use**:
+*  **Two modes of use**:
 
   1. **Java Console App** — classic CSV-based quizzes.
   2. **Browser-Based UI** — modern web app where students just pick a quiz (no CSV uploads).
-* 🎯 **Quiz Picker** — choose from pre-loaded quizzes.
-* ✅ **Instant Feedback** — shows correct/incorrect with explanations.
-* 📊 **Results Summary** — review answers after finishing.
-* 📂 **Export Results** — download as CSV.
-* 📧 **Email Submission** — send scores directly to the instructor.
+* **Quiz Picker** — choose from pre-loaded quizzes.
+*  **Instant Feedback** — shows correct/incorrect with explanations.
+* **Results Summary** — review answers after finishing.
+* **Export Results** — download as CSV.
+* **Email Submission** — send scores directly to the instructor.
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 
 ```
 massagetherapyquizapp/
@@ -41,10 +35,10 @@ massagetherapyquizapp/
 
 ---
 
-## 🌐 Take the Quiz Online
+##  Take the Quiz Online
 
-👉 **Students click here to start:**
-🔗 [Massage Therapy Quiz App](https://alq5630.github.io/massagetherapyquizapp/)
+ **Students click here to start:**
+ [Massage Therapy Quiz App](https://alq5630.github.io/massagetherapyquizapp/)
 
 ### Student Instructions
 
@@ -59,7 +53,7 @@ massagetherapyquizapp/
 
 ---
 
-## 👩‍🏫 Instructor Guide
+##  Instructor Guide
 
 ### Editing Quizzes
 
@@ -116,7 +110,7 @@ window.EMAIL_CONFIG = {
 
 ---
 
-## 🖥️ Java Console Version (Optional)
+## 🖥 Java Console Version (Optional)
 
 Still included for command-line users.
 
@@ -139,7 +133,7 @@ SHORT,Name one hormone of the sympathetic response.,,epinephrine|adrenaline|nore
 
 ---
 
-## 🚀 Deployment
+##  Deployment
 
 This repo is already set up for **GitHub Pages**:
 
@@ -149,13 +143,13 @@ This repo is already set up for **GitHub Pages**:
 
 ---
 
-## 📜 License
+##  License
 
 MIT License — free to use, modify, and share.
 
 ---
 
-## 🙋 About
+##  About
 
 Created to support **Massage Therapy education** — practice ethics, anatomy, physiology, and more by customizing quizzes.
 
