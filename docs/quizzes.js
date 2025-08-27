@@ -66,21 +66,51 @@ window.QUIZ_CATALOG = [
     ]
   },
 
-  // You can keep or remove these samples
-  {
-    id: "ethics-01",
-    title: "Ethics: Professional Boundaries (Set 1)",
+   {
+    id: "chapter-8-massage-techniques",
+    title: "Chapter 8: Massage Techniques",
     questions: [
-      { type: "TF", prompt: "A dual relationship can sometimes be ethical with informed consent and supervision.", answer: "TRUE",
-        explanation: "When unavoidable, transparency and documentation reduce risk." },
-      { type: "MC", prompt: "Which action best maintains client autonomy?",
-        options: ["A. Making decisions for the client", "B. Providing choices and informed consent", "C. Withholding risks to avoid anxiety", "D. Recommending without discussing alternatives"],
-        answer: "B", explanation: "Informed choice respects autonomy." },
-      { type: "SHORT", prompt: "Name one element of informed consent.",
-        answer: "risks|benefits|alternatives|scope|privacy|confidentiality",
-        explanation: "Key elements include risks, benefits, alternatives, scope, and privacy/confidentiality." }
+      { type: "MC", prompt: "Which massage technique is most commonly used to begin and end a session because it promotes relaxation and warms tissues?",
+        options: ["A. Petrissage", "B. Effleurage", "C. Tapotement", "D. Compression"],
+        answer: "B", explanation: "Effleurage is typically used to start and finish a massage because it relaxes and warms tissues." },
+
+      { type: "MC", prompt: "A client presents with muscle adhesions and scar tissue in the shoulder area. Which technique would be most appropriate to address this?",
+        options: ["A. Effleurage", "B. Tapotement", "C. Friction", "D. Vibration"],
+        answer: "C", explanation: "Friction, especially cross-fiber, helps break down adhesions and scar tissue." },
+
+      { type: "MC", prompt: "Which stroke is best to increase venous return and improve circulation?",
+        options: ["A. Petrissage", "B. Effleurage", "C. Compression", "D. Vibration"],
+        answer: "A", explanation: "Petrissage kneads and lifts tissues, improving circulation and venous return." },
+
+      { type: "MC", prompt: "Which technique is most effective for loosening mucus in respiratory therapy?",
+        options: ["A. Tapotement", "B. Petrissage", "C. Friction", "D. Vibration"],
+        answer: "A", explanation: "Tapotement, especially cupping, is used in respiratory therapy to loosen mucus." },
+
+      { type: "MC", prompt: "A therapist is working with a client in a chair massage setting, where the client remains clothed. Which technique is especially appropriate?",
+        options: ["A. Effleurage", "B. Petrissage", "C. Compression", "D. Friction"],
+        answer: "C", explanation: "Compression can be performed effectively through clothing, making it ideal for chair massage." },
+
+      { type: "MC", prompt: "Which stroke involves lifting and squeezing soft tissues and is often described as a 'kneading' motion?",
+        options: ["A. Effleurage", "B. Petrissage", "C. Friction", "D. Tapotement"],
+        answer: "B", explanation: "Petrissage is the kneading technique that lifts and squeezes tissues." },
+
+      { type: "MC", prompt: "A client needs a stimulating massage before an athletic event. Which technique would best prepare the muscles?",
+        options: ["A. Effleurage", "B. Vibration", "C. Tapotement", "D. Petrissage"],
+        answer: "C", explanation: "Tapotement is stimulating and energizing, making it ideal for pre-event sports massage." },
+
+      { type: "MC", prompt: "Which technique can be used to desensitize an area before deeper work by shaking or trembling the tissues?",
+        options: ["A. Effleurage", "B. Compression", "C. Friction", "D. Vibration"],
+        answer: "D", explanation: "Vibration relaxes and desensitizes tissues before deeper massage." },
+
+      { type: "MC", prompt: "Which stroke is typically applied in a cross-fiber (transverse) direction to help break down adhesions?",
+        options: ["A. Petrissage", "B. Effleurage", "C. Friction", "D. Tapotement"],
+        answer: "C", explanation: "Cross-fiber friction is used to break down adhesions and realign fibers." },
+
+      { type: "MC", prompt: "A client reports chronic tightness in the calves. Which technique would best release tension and improve circulation in this muscle group?",
+        options: ["A. Petrissage", "B. Effleurage", "C. Vibration", "D. Compression"],
+        answer: "A", explanation: "Petrissage releases muscle tension and improves circulation in tight areas like the calves." }
     ]
-  }
+  },
 ];
 
 // Email config (Formspree or your endpoint)
