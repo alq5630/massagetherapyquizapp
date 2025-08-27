@@ -79,3 +79,10 @@ th { background: #f3f4f6; }
 .error { color: var(--err); margin-top: 8px; }
 
 footer { text-align: center; padding: 20px; color: var(--muted); }
+
+.montagu-slab {
+  font-family: "Montagu Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
