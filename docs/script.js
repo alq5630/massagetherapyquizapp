@@ -295,3 +295,13 @@ els.restartBtn.addEventListener('click', () => {
 });
 els.exportBtn.addEventListener('click', exportResults);
 els.emailBtn.addEventListener('click', emailResults);
+
+// ===== INIT ON LOAD =====
+document.addEventListener('DOMContentLoaded', () => {
+  if (!els.quizSelect) {
+    console.error('Missing <select id="quizSelect"> in HTML.');
+    return;
+  }
+  loadQuizPicker();
+});
+
